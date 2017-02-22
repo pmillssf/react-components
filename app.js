@@ -1,11 +1,22 @@
 class GroceryListItem extends React.Component {
 	constructor(props) {
-	  super(props)	
+	  super(props);
+
+	  this.state = {
+	  	done: false
+	  };
+	}
+
+	onListItemHover() {
+		this.setState({
+			done: !this.state.done
+		});
 	}
 
 	render() {
-		return <li>{this.props.item}</li>
-	}
+		var style = {'fontWeight': this.state.done ? 'bold' : 'none'};
+		return <li style={style} onMouseEnter={this.onListItemHover.bind(this)} onMouseLeave={this.onListItemHover.bind(this)}>{this.props.item}</li>
+	};
 }
 
 var GroceryList = (props) => (
@@ -13,9 +24,8 @@ var GroceryList = (props) => (
   {props.items.map( item => <GroceryListItem item={item} />)}
   </ul>
 );
-// var GroceryListItem = (props) => (
-//   <li>{props.item}</li>
-// );
+// Why don't we need to call new?
+
 ReactDOM.render(<GroceryList items = {['pie', 'tea', 'food']}/>, document.getElementById("app"));
 
 
