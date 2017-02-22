@@ -5,17 +5,25 @@ class GroceryListItem extends React.Component {
 	  this.state = {
 	  	done: false
 	  };
+	  this.onListItemEnter = this.onListItemEnter.bind(this);
+	  this.onListItemLeave = this.onListItemLeave.bind(this);
 	}
 
-	onListItemHover() {
+	onListItemEnter() {
 		this.setState({
-			done: !this.state.done
+			done: true
+		});
+	}
+
+	onListItemLeave() {
+		this.setState({
+			done: false
 		});
 	}
 
 	render() {
-		var style = {'fontWeight': this.state.done ? 'bold' : 'none'};
-		return <li style={style} onMouseEnter={this.onListItemHover.bind(this)} onMouseLeave={this.onListItemHover.bind(this)}>{this.props.item}</li>
+		var style = {fontWeight: this.state.done ? 'bold' : 'none'};
+		return <li style={style} onMouseEnter={this.onListItemEnter} onMouseLeave={this.onListItemLeave}>{this.props.item}</li>
 	};
 }
 
