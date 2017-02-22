@@ -22,7 +22,7 @@ class GroceryListItem extends React.Component {
 	}
 
 	render() {
-		var style = {fontWeight: this.state.done ? 'bold' : 'none'};
+		var style = {fontWeight: this.state.done ? 'bold' : 'normal'};
 		return <li style={style} onMouseEnter={this.onListItemEnter} onMouseLeave={this.onListItemLeave}>{this.props.item}</li>
 	};
 }
